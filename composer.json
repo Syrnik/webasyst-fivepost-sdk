@@ -1,0 +1,27 @@
+{
+  "name": "serger/webasyst-fivepost-sdk",
+  "description": "SDK 5Post для фреймворка Webasyst Framework",
+  "license": "MIT",
+  "keywords": [
+    "api",
+    "webasyst",
+    "5post",
+    "fivepost",
+    "sdk"
+  ],
+  "authors": [
+    {
+      "name": "Serge Rodovnichenko",
+      "email": "serge@syrnik.com",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SergeR\\Webasyst\\FivepostSDK\\": "src"
+    }
+  }
+}
