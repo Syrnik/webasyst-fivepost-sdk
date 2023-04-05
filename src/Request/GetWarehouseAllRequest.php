@@ -14,8 +14,14 @@ use SergeR\Webasyst\FivepostSDK\RequestInterface;
 use SergeR\Webasyst\FivepostSDK\Response\GetWarehouseAllResponse;
 use SergeR\Webasyst\FivepostSDK\ResponseInterface;
 
+/**
+ *
+ */
 class GetWarehouseAllRequest implements RequestInterface
 {
+    /**
+     * @param int $page
+     */
     public function __construct(protected int $page = 0)
     {
     }
@@ -30,22 +36,41 @@ class GetWarehouseAllRequest implements RequestInterface
         return $this;
     }
 
+    /**
+     * @param Client $client
+     * @return GetWarehouseAllResponse
+     * @throws \SergeR\Webasyst\FivepostSDK\Exceptions\AuthenticationKeyError
+     * @throws \SergeR\Webasyst\FivepostSDK\Exceptions\FivepostSDKException
+     * @throws \SergeR\Webasyst\FivepostSDK\Exceptions\UnexpectedResponse
+     * @throws \waException
+     * @throws \waNetException
+     * @throws \waNetTimeoutException
+     */
     public function send(Client $client): GetWarehouseAllResponse
     {
         $net = $client->query($this);
         return new GetWarehouseAllResponse($net->getResponse());
     }
 
+    /**
+     * @return string
+     */
     public function getEndpoint(): string
     {
         return '/api/v1/getWarehouseAll';
     }
 
+    /**
+     * @return string
+     */
     public function getHttpMethod(): string
     {
         return 'GET';
     }
 
+    /**
+     * @return int[]|null
+     */
     public function getData(): ?array
     {
         return ['page' => $this->page];
