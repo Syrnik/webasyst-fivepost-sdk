@@ -15,6 +15,15 @@ class OrdersRequest implements RequestInterface, \JsonSerializable
 {
     protected array $orders = [];
 
+    /**
+     * @param array $orders
+     */
+    public function __construct(array $orders = [])
+    {
+        if ($orders) $this->orders = $orders;
+    }
+
+
     public function addOrder(array $order): static
     {
         $this->orders[] = $order;
