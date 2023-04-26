@@ -37,7 +37,7 @@ abstract class OrderLabelsRequest implements \SergeR\Webasyst\FivepostSDK\Reques
 
     /**
      * @param Client $client
-     * @return ResponseInterface
+     * @return OrderLabelsResponse
      * @throws AuthenticationKeyError
      * @throws FivepostSDKException
      * @throws UnexpectedResponse
@@ -45,7 +45,7 @@ abstract class OrderLabelsRequest implements \SergeR\Webasyst\FivepostSDK\Reques
      * @throws \waNetException
      * @throws \waNetTimeoutException
      */
-    public function send(Client $client): ResponseInterface
+    public function send(Client $client): OrderLabelsResponse
     {
         $net = $client->query($this);
         return new OrderLabelsResponse($net->getResponseHeader(), $net->getResponse(true));
