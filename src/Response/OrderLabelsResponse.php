@@ -23,7 +23,7 @@ class OrderLabelsResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterf
         foreach ($headers as $key => $value) {
             if(!is_string($key)) continue;
             if ('CONTENT-TYPE' === strtoupper($key))
-                $format = $this->parseContentType($value);
+                $this->format = $this->parseContentType($value);
             elseif ('CONTENT-DISPOSITION' === strtoupper($key))
                 $this->filename = $this->parseFilename($value);
         }
@@ -43,9 +43,8 @@ class OrderLabelsResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterf
     protected function parseFilename(string $header): string
     {
         [$type, $payload] = explode(';', $header . ';', 2);
-        preg_match('/^filename=\"([^\"]+)\"/ui', $payload);
         $matches = [];
-        if ('ATTACHMENT' === strtoupper(trim($type)) && preg_match('/^filename=\"(\S+)\"$/ui', trim($payload), $matches)) {
+        if ('ATTACHMENT' === strtoupper(trim($type)) && preg_match('/^filename=\"(\S+)\"$/ui', trim($payload, "\ \t\n\r\0\x0B;"), $matches)) {
             return trim($matches[1] ?? '');
         }
         return '';
