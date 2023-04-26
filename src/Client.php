@@ -57,8 +57,11 @@ class Client
             if (!$this->getConfig()->getBearerToken()) $this->_authenticate();
             $options += ['authorization' => true, 'auth_type' => 'Bearer', 'auth_key' => $this->getConfig()->getBearerToken()];
         } else {
-            $options['format']=\waNet::FORMAT_RAW;
+            $options['format'] = \waNet::FORMAT_RAW;
         }
+
+        if (method_exists($request, 'waNetOptions') && ($req_options = $request->waNetOptions()))
+            $options = array_merge($options, $req_options);
 
         $net = new waNet($options, $custom_headers);
         $url = $this->config->getBaseUrl() . $request->getEndpoint();

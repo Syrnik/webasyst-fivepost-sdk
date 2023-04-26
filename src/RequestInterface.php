@@ -21,4 +21,5 @@ interface RequestInterface
     public function getHttpMethod(): string;
 
     public function getData(): ?array;
+
 }
