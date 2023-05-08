@@ -11,8 +11,11 @@ namespace SergeR\Webasyst\FivepostSDK\Response;
 
 class GetWarehouseAllResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterface, \Countable
 {
-    public function __construct(protected array $data)
+    protected array $data;
+
+    public function __construct(array $data)
     {
+        $this->data = $data;
     }
 
     public function count(): int

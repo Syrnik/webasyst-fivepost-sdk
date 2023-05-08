@@ -14,8 +14,11 @@ namespace SergeR\Webasyst\FivepostSDK\Response;
  */
 class CancelOrderResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterface
 {
-    public function __construct(protected array $data)
+    protected array $data;
+
+    public function __construct(array $data)
     {
+        $this->data = $data;
     }
 
     /**

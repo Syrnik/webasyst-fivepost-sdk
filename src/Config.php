@@ -63,7 +63,11 @@ class Config
         return $this->api_key;
     }
 
-    public function registerSaveCallback(callable|Closure $save_callback): Config
+    /**
+     * @param callable|Closure $save_callback
+     * @return $this
+     */
+    public function registerSaveCallback($save_callback): Config
     {
         $this->save_callback = $save_callback;
         return $this;

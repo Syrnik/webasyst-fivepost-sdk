@@ -19,18 +19,22 @@ use SergeR\Webasyst\FivepostSDK\ResponseInterface;
  */
 class GetWarehouseAllRequest implements RequestInterface
 {
+    /** @var int */
+    protected int $page = 0;
+
     /**
      * @param int $page
      */
-    public function __construct(protected int $page = 0)
+    public function __construct(int $page = 0)
     {
+        $this->page = $page;
     }
 
     /**
      * @param int $page
      * @return GetWarehouseAllRequest
      */
-    public function setPage(int $page): static
+    public function setPage(int $page): self
     {
         $this->page = $page;
         return $this;

@@ -22,9 +22,12 @@ use SergeR\Webasyst\FivepostSDK\{Client,
  */
 class AuthenticationRequest implements RequestInterface
 {
+    /** @var string */
+    protected string $api_key;
 
-    public function __construct(protected string $api_key)
+    public function __construct(string $api_key)
     {
+        $this->api_key = $api_key;
     }
 
     public function getEndpoint(): string

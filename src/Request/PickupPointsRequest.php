@@ -27,8 +27,13 @@ use waNetTimeoutException;
  */
 class PickupPointsRequest implements RequestInterface, JsonSerializable
 {
-    public function __construct(protected int $page = 0, protected int $page_size = 1000)
+    protected int $page = 0;
+    protected int $page_size = 1000;
+
+    public function __construct(int $page = 0, int $page_size = 1000)
     {
+        $this->page_size = $page_size;
+        $this->page = $page;
     }
 
     /**

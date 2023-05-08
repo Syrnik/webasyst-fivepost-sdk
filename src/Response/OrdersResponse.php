@@ -13,8 +13,11 @@ use SergeR\Webasyst\FivepostSDK\ResponseInterface;
 
 class OrdersResponse implements ResponseInterface
 {
-    public function __construct(protected array $data)
+    protected array $data;
+
+    public function __construct(array $data)
     {
+        $this->data = $data;
     }
 
     public function getData(): array

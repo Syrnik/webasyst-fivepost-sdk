@@ -23,7 +23,7 @@ class AuthenticationKeyError extends FivepostSDKException
         parent::__construct($message, $code, $previous);
     }
 
-    public static function fromResponse(mixed $response): AuthenticationKeyError
+    public static function fromResponse($response): AuthenticationKeyError
     {
         $ex = new self();
         if (is_array($response)) {

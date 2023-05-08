@@ -11,9 +11,10 @@ namespace SergeR\Webasyst\FivepostSDK\Exceptions;
 
 class UnexpectedResponse extends FivepostSDKException
 {
-    protected mixed $response = null;
+    /** @var mixed */
+    protected $response = null;
 
-    public function __construct(string $message = 'Unexpected response', string|int $code = 200, $previous = null)
+    public function __construct(string $message = 'Unexpected response', $code = 200, $previous = null)
     {
         parent::__construct($message, intval($code), $previous);
     }
@@ -22,7 +23,7 @@ class UnexpectedResponse extends FivepostSDKException
      * @param mixed $response
      * @return UnexpectedResponse
      */
-    public function setResponse(mixed $response): UnexpectedResponse
+    public function setResponse($response): UnexpectedResponse
     {
         $this->response = $response;
         return $this;
@@ -31,7 +32,7 @@ class UnexpectedResponse extends FivepostSDKException
     /**
      * @return mixed
      */
-    public function getResponse(): mixed
+    public function getResponse()
     {
         return $this->response;
     }

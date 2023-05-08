@@ -34,7 +34,7 @@ class OrdersRequest implements RequestInterface, \JsonSerializable
      * @param array $order
      * @return $this
      */
-    public function addOrder(array $order): static
+    public function addOrder(array $order): self
     {
         $this->orders[] = $order;
         return $this;

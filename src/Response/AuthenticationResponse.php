@@ -48,7 +48,7 @@ class AuthenticationResponse implements ResponseInterface
         if ('application/json' === $response_content_type) try {
             $result = waUtils::jsonDecode($result, true);
         } catch (waException $e) {
-            throw new UnexpectedResponse("Ошибка декодирования json", previous: $e);
+            throw new UnexpectedResponse("Ошибка декодирования json", 200, $e);
         }
 
         if (401 === $http_code) {
@@ -64,7 +64,7 @@ class AuthenticationResponse implements ResponseInterface
         }
 
         if (!is_array($result) || 'ok' !== ($result['status'] ?? '') || !($token = ($result['jwt'] ?? '')))
-            throw (new UnexpectedResponse(code: $net->getResponseHeader('http_code')))->setResponse($result);
+            throw (new UnexpectedResponse('Unexpected response', $net->getResponseHeader('http_code')))->setResponse($result);
 
         $this->token = $token;
     }

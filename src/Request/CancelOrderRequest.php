@@ -21,11 +21,14 @@ use SergeR\Webasyst\FivepostSDK\Response\CancelOrderResponse;
  */
 abstract class CancelOrderRequest implements RequestInterface
 {
+    protected string $id;
+
     /**
      * @param string $id
      */
-    public function __construct(protected string $id)
+    public function __construct(string $id)
     {
+        $this->id = $id;
     }
 
     /**

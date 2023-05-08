@@ -15,13 +15,18 @@ class OrderLabelsResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterf
 
     protected string $filename = '';
 
-    protected mixed $data = '';
+    /** @var mixed */
+    protected $data = '';
 
-    public function __construct(array $headers, mixed $data)
+    /**
+     * @param array $headers
+     * @param mixed $data
+     */
+    public function __construct(array $headers, $data)
     {
         $this->data = $data;
         foreach ($headers as $key => $value) {
-            if(!is_string($key)) continue;
+            if (!is_string($key)) continue;
             if ('CONTENT-TYPE' === strtoupper($key))
                 $this->format = $this->parseContentType($value);
             elseif ('CONTENT-DISPOSITION' === strtoupper($key))
@@ -33,11 +38,9 @@ class OrderLabelsResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterf
     {
         [$header] = explode(';', $header);
         $header = strtolower(trim($header));
-        return match ($header) {
-            'application/pdf' => 'PDF',
-            'application/zip' => 'ZIP',
-            default => $header
-        };
+        if ('application/pdf' === $header) return 'PDF';
+        elseif ('application/zip' === $header) return 'ZIP';
+        return $header;
     }
 
     protected function parseFilename(string $header): string
@@ -69,7 +72,7 @@ class OrderLabelsResponse implements \SergeR\Webasyst\FivepostSDK\ResponseInterf
     /**
      * @return mixed
      */
-    public function getData(): mixed
+    public function getData()
     {
         return $this->data;
     }
