@@ -17,10 +17,10 @@ use Closure;
 class Config
 {
     /** @var string */
-    const TEST_MODE = 'test';
+    public const TEST_MODE = 'test';
 
     /** @var string */
-    const PRODUCTION_MODE = 'production';
+    public const PRODUCTION_MODE = 'production';
 
     /** @var string */
     protected string $mode = 'test';
